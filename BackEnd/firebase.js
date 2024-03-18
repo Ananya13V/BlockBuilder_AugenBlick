@@ -10,6 +10,7 @@ import {
   getDatabase,
   ref,
   set,
+  update,
 } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
 
 //import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
@@ -46,7 +47,7 @@ function signInWithGoogle() {
         lastLogin: Date.now(),
       };
 
-      set(ref(database, "users/" + user.uid), userData)
+      update(ref(database, "users/" + user.uid), userData)
         .then(() => {
           alert("User Logged In with Google!");
           //updateNavbar(auth);
@@ -66,6 +67,9 @@ document
     e.preventDefault();
     signInWithGoogle();
   });
+
+
+
 //export default googleSignIn;
 
 // Initialize Google Sign-In when the page loads
