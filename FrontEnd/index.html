@@ -10,17 +10,39 @@
 
 <body>
     <div class="container">
-        <h1>Welcome to Our Website!</h1>
-        <div id="pieChart" class="chart"></div>
-        <div id="barGraph" class="chart"></div>
-        <input type="file" id="imageUpload" accept="image/*">
-        <div id="imagePreview"></div>
-        <button id="analyzeButton">Analyze Image</button>
+        <nav class="flex align-center">
+            <p><span>Code</span>pen</p>
+            <ul>
+              <li class="big-screens">
+                <button class="btn register" type="submit" id="google-login-btn">Log In</button>
+                <button class="btn login"><a href="dashboard.html">Dashboard</a></button>
+              </li>
+              <li class="small-screens">
+                <i class="fa-solid fa-bars"></i>
+              </li>
+            </ul>
+          </nav>
+          <h1>Welcome to Our Website!</h1>
+          <div class="upload-div">
+              <!-- <div class="svg-div">
+                <img src="../assets/upload.svg" alt="SVG Image" width="400" height="400">
+              </div> -->
+              <!-- <div id="pieChart" class="chart"></div>
+              <div id="barGraph" class="chart"></div> -->
+              <div class="img-upload">
+                  <h2>Upload an Image to classify</h2>
+                  <label for="imageUpload" class="custom-file-label">
+                    <img src="../assets/upload-icon.png">
+                    Choose File</label>
+                  <input type="file" id="imageUpload" accept="image/*" class="custom-file-input">
+                  <div id="imagePreview"></div>
+                  <button id="analyzeButton" class="btn register analyzeButton">Analyze Image</button>
+              </div>
+          </div>
         <p>Description of the website goes here.</p>
     </div>
 
     <!-- Google Sign-In button -->
-    <button class="submit" id="google-login-btn">Sign in with Google</button>
     <script src="../BackEnd/firebase.js" type="module">
     </script>
 
