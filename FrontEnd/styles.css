@@ -1,0 +1,25 @@
+body {
+    background-color: lightblue; /* or lightgreen */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.chart {
+    margin: 20px auto;
+}
+
+#imageUpload {
+    display: block;
+    margin: 20px auto;
+}
+
+#analyzeButton {
+    display: block;
+    margin: 10px auto;
+}
