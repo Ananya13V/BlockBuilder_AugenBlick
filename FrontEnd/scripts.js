@@ -30,28 +30,6 @@ function displayImage(file) {
   reader.readAsDataURL(file);
 }
 
-// Handle image upload and display
-document
-  .getElementById("imageUpload")
-  .addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-      displayImage(file);
-    }
-  });
-
-// Handle image analysis
-document.getElementById("analyzeButton").addEventListener("click", function () {
-  const file = document.getElementById("imageUpload").files[0];
-  if (file) {
-    // Send the image file to the backend for analysis
-    // Assume analyzeImage() is a function that sends the image to the backend API for analysis
-    analyzeImage(file);
-  } else {
-    alert("Please select an image to analyze.");
-  }
-});
-
 // Handle image upload and analysis
 document
   .getElementById("imageUpload")
@@ -63,6 +41,74 @@ document
       analyzeImage(file);
     }
   });
+
+
+// Handle image upload and display
+document
+  .getElementById("imageUpload")
+  .addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      displayImage(file);
+    }
+  });
+
+// Handle image analysis
+// document.getElementById("analyzeButton").addEventListener("click", function () {
+//   const file = document.getElementById("imageUpload").files[0];
+//   if (file) {
+//     // Send the image file to the backend for analysis
+//     // Assume analyzeImage() is a function that sends the image to the backend API for analysis
+//     analyzeImage(file);
+//   } else {
+//     alert("Please select an image to analyze.");
+//   }
+// });
+
+// Function to send the image file to the backend for analysis
+// Function to send the image file to the backend for analysis
+function analyzeImage(file) {
+    // Create FormData object to send file data
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // Send POST request to the backend
+    fetch("/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Check if data contains an error
+        if (data.error) {
+          alert(data.error); // Display error message
+        } else {
+          // If no error, render the result
+          renderResult(data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again."); // Display generic error message
+      });
+}
+
+// Render the result received from the backend
+function renderResult(data) {
+  // Update the DOM elements to display the result
+  document.getElementById("result").innerHTML = `
+    <h2>Result:</h2>
+    <p>Predicted Class: ${data.predicted_value}</p>
+    <p>Details: ${data.details}</p>
+    <p>Videos:</p>
+    <div>
+      <iframe width="420" height="315" src="${data.video1}"></iframe>
+      <iframe width="420" height="315" src="${data.video2}"></iframe>
+    </div>
+  `;
+}
+
+
 
 // Initialize the page
 function init() {

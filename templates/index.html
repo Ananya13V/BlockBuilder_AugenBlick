@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../FrontEnd/styles.css">
 </head>
 
 <body>
@@ -31,21 +31,47 @@
               <div id="barGraph" class="chart"></div> -->
               <div class="img-upload">
                   <h2>Upload an Image to classify</h2>
+                  <!-- <form method="POST" action="/" enctype="multipart/form-data">
+                    <input type="file" name="file">
+                    <input type="submit" value="Upload">
+                  </form> -->
                   <label for="imageUpload" class="custom-file-label">
                     <img src="../assets/upload-icon.png">
                     Choose File</label>
                   <input type="file" id="imageUpload" accept="image/*" class="custom-file-input">
                   <div id="imagePreview"></div>
-                  <button id="analyzeButton" class="btn register analyzeButton">Analyze Image</button>
+                  <button type="submit" id="analyzeButton" class="btn register analyzeButton">Analyze Image</button>
+              </div>
+          </div>
+          <div id="result" class="result-container" style="display: none;">
+              <h2>Result</h2>
+              <div id="predictedValue"></div>
+              <div id="details"></div>
+              <div id="videos">
+                  <h3>Videos</h3>
+                  <div id="video1"></div>
+                  <div id="video2"></div>
               </div>
           </div>
         <p>Description of the website goes here.</p>
     </div>
 
     <!-- Google Sign-In button -->
+    <script type="module">
+      document.getElementById("analyzeButton").addEventListener("click", function () {
+  const file = document.getElementById("imageUpload").files[0];
+  if (file) {
+    // Send the image file to the backend for analysis
+    // Assume analyzeImage() is a function that sends the image to the backend API for analysis
+    analyzeImage(file);
+  } else {
+    alert("Please select an image to analyze.");
+  }
+});
+    </script>
     <script src="../BackEnd/firebase.js" type="module">
     </script>
-    <script src="scripts.js"></script>
+    <script src="../FrontEnd/scripts.js"></script>
     <script src="../BackEnd/firebase.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>

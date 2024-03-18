@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waste Classification Result</title>
+    <link rel="stylesheet" href="../FrontEnd/styles.css">
+</head>
+<body>
+    <h2>The predicted class is: {{ prediction }}</h2>
+    <img src="{{ url_for('static', filename='upload_image.jpeg') }}" alt="Uploaded Image">
+</body>
+</html>
